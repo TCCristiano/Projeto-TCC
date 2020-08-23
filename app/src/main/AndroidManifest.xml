@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.projeto_tcc">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ChatCompra"></activity>
+        <activity android:name=".CadastroImage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Cadastro4"/>
+        </activity>
+        <activity android:name=".Cadastro4" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Cadastro3"/>
+        </activity>
+        <activity android:name=".Cadastro3" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Cadastro2"/>
+        </activity>
+        <activity android:name=".Cadastro2">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CadastroUsuario"/>
+        </activity>
+        <activity android:name=".PagEditarUser" />
+        <activity
+            android:name=".PagInicial"
+            android:label="@string/title_activity_pag_inicial"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CadastroUsuario" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".PagLogin"/>
+    </activity>
+        <activity android:name=".EscolhaCriarConta" />
+        <activity android:name=".PagLogin" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

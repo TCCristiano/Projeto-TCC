@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_pedido">
+
+    <fragment
+        android:id="@+id/nav_pedido"
+        android:name="com.example.projeto_tcc.ui.Pedidos.PedidosFragment"
+        android:label="@string/menu_Pedidos"
+        tools:layout="@layout/fragment_pedidos" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.projeto_tcc.ui.EditUsuario.EditUsuarioFragment"
+        android:label="@string/menu_EditDel"
+        tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_loja"
+        android:name="com.example.projeto_tcc.ui.MinhaLoja.MinhaLojaFragment"
+        android:label="@string/menu_Loja"
+        tools:layout="@layout/fragment_minhaloja" />
+</navigation>

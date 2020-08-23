@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "179605197325",
+    "firebase_url": "https://chattccfirebase.firebaseio.com",
+    "project_id": "chattccfirebase",
+    "storage_bucket": "chattccfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179605197325:android:7fb1872bb8c0bae98afb44",
+        "android_client_info": {
+          "package_name": "com.example.projeto_tcc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179605197325-jgu84cin1418hfolssc3hqrv7u7dp15d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdwWDd1hOzPIczNZeNU4tEkynazbpHsFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179605197325-jgu84cin1418hfolssc3hqrv7u7dp15d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
