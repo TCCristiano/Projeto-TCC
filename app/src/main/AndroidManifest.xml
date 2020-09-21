@@ -1,47 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.projeto_tcc">
+    package="com.example.projetotcc">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatCompra"></activity>
-        <activity android:name=".CadastroImage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Cadastro4"/>
-        </activity>
-        <activity android:name=".Cadastro4" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Cadastro3"/>
-        </activity>
-        <activity android:name=".Cadastro3" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Cadastro2"/>
-        </activity>
-        <activity android:name=".Cadastro2">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CadastroUsuario"/>
-        </activity>
-        <activity android:name=".PagEditarUser" />
+        <activity android:name=".ui.ListaProdutos"></activity>
+        <activity android:name=".CadastroProduto.CadastroProduto" />
+        <activity android:name=".CadastroUsuario.Cadastro5" />
+        <activity android:name=".CadastroUsuario.Cadastro4" />
+        <activity android:name=".CadastroUsuario.Cadastro3" />
+        <activity android:name=".CadastroUsuario.Cadastro2" />
+        <activity android:name=".CadastroUsuario.Cadastro1" />
         <activity
-            android:name=".PagInicial"
-            android:label="@string/title_activity_pag_inicial"
+            android:name=".PaginaUsuario"
+            android:label="@string/title_activity_pagina_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CadastroUsuario" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".PagLogin"/>
-    </activity>
-        <activity android:name=".EscolhaCriarConta" />
-        <activity android:name=".PagLogin" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

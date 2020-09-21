@@ -54,4 +54,13 @@
         <item>Masculino</item>
         <item>Feminino</item>
     </string-array>
+    <string name="title_activity_pagina_usuario">PaginaUsuario</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_minhaLoja">Minha Loja</string>
+    <string name="menu_pedidos">Pedidos</string>
+    <string name="menu_categoria">Categoria</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_sair">Sair</string>
 </resources>
