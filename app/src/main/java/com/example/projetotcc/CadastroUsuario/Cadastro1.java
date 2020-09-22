@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.projetotcc.PaginaUsuario;
 import com.example.projetotcc.R;
 import com.example.projetotcc.Usuario;
 

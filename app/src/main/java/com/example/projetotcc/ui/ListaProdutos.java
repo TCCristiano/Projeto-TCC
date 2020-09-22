@@ -42,27 +42,23 @@ public class ListaProdutos extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this.getApplicationContext());
         RecyclerView rv = findViewById(R.id.recycler);
 
+        produto = new Produto();
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         controller = new Controller();
-        produto = new Produto();
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
         e = controller.UltimoProduto();
-        fetchUsers();
-
+        fetchUsers(e);
     }
 
-    private void fetchUsers()
+    private void fetchUsers(int e)
     {
-        for(int i = 1; i <= e; i++) {
-            produto = controller.ListarProdutos(i, HomeFragment.produto);
-            if (produto.getID() == (i))
-                continue;
+        for(int i = 1; i <= e;) {
+            produto = controller.ListarProdutos(i);
             adapter.add(new ProdutoItem(produto));
             adapter.notifyDataSetChanged();
+            i++;
         }
     }
 
@@ -77,10 +73,9 @@ public class ListaProdutos extends AppCompatActivity {
         public void bind(@NonNull ViewHolder viewHolder, int position) {
             TextView var3 = (TextView) viewHolder.itemView.findViewById(R.id.nomeProduto);
             TextView var4 = (TextView) viewHolder.itemView.findViewById(R.id.precoProduto);
-            TextView var5 = (TextView) viewHolder.itemView.findViewById(R.id.descricaoProduto);
+
             var3.setText(produto.getNome());
-            var4.setText(produto.getDescricao());
-            var5.setText("uiui");
+            var4.setText(produto.getPreco() + " " +produto.getID());
         }
 
         @Override

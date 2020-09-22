@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -28,6 +29,7 @@ import com.example.projetotcc.R;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CadastroProduto extends AppCompatActivity {
     public static Uri filePath;
@@ -53,38 +55,63 @@ public class CadastroProduto extends AppCompatActivity {
         this.controller = new Controller();
         Spinner spinner = (Spinner)this.findViewById(R.id.tipoProduto);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.activity_cadastro_produto, new ArrayList(Arrays.asList(new String[]{"Categoria", "Moda", "Casa"}))) {
-            public View getDropDownView(int var1, View var2, ViewGroup var3) {
-                View var4 = super.getDropDownView(var1, var2, var3);
-                TextView var5 = (TextView)var4;
-                if (var1 == 0) {
-                    var5.setTextColor(-7829368);
-                    return var4;
-                } else {
-                    var5.setTextColor(-16777216);
-                    return var4;
+        String[] StringTipo = new String[]{
+                "Tipo",
+                "Moda",
+                "Isso"
+        };
+
+        final List<String> sexoSelect = new ArrayList<>(Arrays.asList(StringTipo));
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this,R.layout.activity_cadastro_produto,sexoSelect){
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
+                {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
-
-            public boolean isEnabled(int var1) {
-                return var1 != 0;
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
             }
         };
-        arrayAdapter.setDropDownViewResource(R.layout.activity_cadastro_produto);
-        spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView var1, View var2, int var3, long var4) {
-                CadastroProduto.this.getCategoria = (String)var1.getItemAtPosition(var3);
-                if (var3 > 0) {
-                    Context var6 = CadastroProduto.this.getApplicationContext();
-                    StringBuilder var7 = new StringBuilder();
-                    var7.append("Selecionado : ");
-                    var7.append(CadastroProduto.this.getCategoria);
-                    Toast.makeText(var6, var7.toString(), Toast.LENGTH_SHORT).show();
-                }
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, StringTipo));
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+                if(position > 0){
+                    // Notify the selected item text
+                    Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
-            public void onNothingSelected(AdapterView var1) {
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 

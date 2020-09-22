@@ -54,9 +54,10 @@ public class Controller extends AppCompatActivity {
       };
       requestQueue.add(stringRequest);
    }
-   public Produto ListarProdutos(final int id,final Produto produto) {
+   public Produto ListarProdutos(final int id) {
       final String cod = String.valueOf(id);
       requestQueue = ListaProdutos.requestQueue;
+      final Produto produto = new Produto();
       StringRequest postRequest = new StringRequest(Request.Method.POST, Constants.Urlprodutos,
               new Response.Listener<String>() {
          @Override
@@ -66,6 +67,7 @@ public class Controller extends AppCompatActivity {
                JSONObject jsonObject = new JSONObject(response);
                produto.setNome(jsonObject.getString("nome_produto"));
                produto.setDescricao(jsonObject.getString("descricao_produto"));
+               produto.setPreco(jsonObject.getString("preco_produto"));
                produto.setID(jsonObject.getInt("cod_produto"));
                Log.v("LogLogin", produto.getNome());
             } catch (JSONException e) {
@@ -108,7 +110,7 @@ public class Controller extends AppCompatActivity {
 
    public void CadastrarP(final String nome, final String preco, final String descricao) {
       requestQueue = CadastroProduto.requestQueue;
-      StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.produtos, new Response.Listener<String>() {
+      StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.insertUrlProduto, new Response.Listener<String>() {
          @Override
          public void onResponse(String response) {
             System.out.println(response);

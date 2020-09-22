@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="700dp"
         android:background="@android:color/background_dark"
+        android:onClick="Cadastrar"
         android:text="@string/btn_irCadastro"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

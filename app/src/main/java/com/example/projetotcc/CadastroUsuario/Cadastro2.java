@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.projetotcc.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Cadastro2 extends AppCompatActivity {
     private static String Data;
@@ -35,43 +37,65 @@ public class Cadastro2 extends AppCompatActivity {
         this.data1 = (EditText)this.findViewById(R.id.dataUserCadastro);
         usuario = Cadastro1.usuario;
 
-        Spinner spinner = (Spinner)this.findViewById(R.id.sexoUserCadastro);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.activity_cadastro_2, new ArrayList(Arrays.asList(new String[]{"SEXO", "Masculino", "Feminino"}))) {
-            public View getDropDownView(int var1, View var2, ViewGroup var3)
-            {
-                View var4 = super.getDropDownView(var1, var2, var3);
-                TextView var5 = (TextView)var4;
-                if (var1 == 0)
+        String[] StringSexo = new String[]{
+                "SEXO",
+                "Masculino",
+                "Feminino"
+        };
+
+        Spinner spinner = (Spinner)findViewById(R.id.sexoUserCadastro);
+        final List<String> sexoSelect = new ArrayList<>(Arrays.asList(StringSexo));
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this,R.layout.activity_cadastro_2,sexoSelect){
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
                 {
-                    var5.setTextColor(-7829368);
-                    return var4;
-                } else
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
                 {
-                    var5.setTextColor(-16777216);
-                    return var4;
+                    return true;
                 }
             }
-            public boolean isEnabled(int var1) {
-                return var1 != 0;
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
             }
         };
-        arrayAdapter.setDropDownViewResource(R.layout.activity_cadastro_2);
-        spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView var1, View var2, int var3, long var4)
-            {
-                Cadastro2.sexoget = (String)var1.getItemAtPosition(var3);
-                if (var3 > 0)
-                {
-                    Context var7 = Cadastro2.this.getApplicationContext();
-                    StringBuilder var8 = new StringBuilder();
-                    var8.append("Selecionado : ");
-                    var8.append(Cadastro2.sexoget);
-                    Toast.makeText(var7, var8.toString(), Toast.LENGTH_SHORT).show();
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, sexoSelect));
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+                if(position > 0){
+                    // Notify the selected item text
+                    Toast.makeText
+                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
-            public void onNothingSelected(AdapterView var1){}
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
     }
 

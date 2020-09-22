@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.projetotcc.CadastroProduto.CadastroProduto;
+import com.example.projetotcc.CadastroUsuario.Cadastro5;
 import com.example.projetotcc.ui.ListaProdutos;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -45,9 +46,15 @@ public class PaginaUsuario extends AppCompatActivity {
 
         this.login = new MainActivity();
         this.login = new MainActivity();
-        this.usuario = MainActivity.usuario;
-        context = this;
+        if(MainActivity.usuario != null) {
+            this.usuario = MainActivity.usuario;
 
+        }
+        else
+        {
+            this.usuario = Cadastro5.usuario;
+        }
+        context = this;
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
