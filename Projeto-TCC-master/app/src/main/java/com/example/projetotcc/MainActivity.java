@@ -1,6 +1,7 @@
 package com.example.projetotcc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.projetotcc.CadastroUsuario.Cadastro1;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static JSONObject jsonObject;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
          String Senha = this.senham.getText().toString();
          controller.Login(Email, Senha, usuario);
 
+
         if(usuario.getNome() == null)
         {
             Toast.makeText(this, "Falha" + usuario.getEmail() , Toast.LENGTH_LONG).show();
@@ -57,4 +61,6 @@ public class MainActivity extends AppCompatActivity {
         it = new Intent(this, Cadastro1.class);
         this.startActivity(it);
     }
+
+
 }

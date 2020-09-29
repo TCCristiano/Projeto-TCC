@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/PrestadorRecyclerView"
+        android:id="@+id/prestadorRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="596dp"
@@ -56,12 +56,12 @@
         android:padding="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/layoutHeader"
-        app:layout_constraintBottom_toTopOf="@id/buttonAddToWatchlist"
+        app:layout_constraintBottom_toTopOf="@id/buttonAddListaFavoritos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonAddToWatchlist"
+        android:id="@+id/buttonAddListaFavoritos"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:background="@color/colorAccent"
