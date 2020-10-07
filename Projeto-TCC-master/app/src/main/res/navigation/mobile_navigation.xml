@@ -9,13 +9,19 @@
         android:id="@+id/nav_home"
         android:name="com.example.projetotcc.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_minhaLoja"
         android:name="com.example.projetotcc.ui.minhaLoja.MinhaLojaFragment"
         android:label="@string/menu_minhaLoja"
-        tools:layout="@layout/fragment_minha_loja" />
+        tools:layout="@layout/fragment_meu_servico" />
+    <fragment
+        android:id="@+id/nav_lista"
+        android:name="com.example.projetotcc.ui.listaFragment.ListaCategoriasFragment"
+        android:label="@string/menu_listar"
+        tools:layout="@layout/fragment_lista" />
 
     <fragment
         android:id="@+id/nav_pedidos"

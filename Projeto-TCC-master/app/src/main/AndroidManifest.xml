@@ -3,6 +3,8 @@
     package="com.example.projetotcc">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ListaProdutos"></activity>
-        <activity android:name=".CadastroProduto.CadastroProduto" />
+        <activity android:name=".ListaCategorias"></activity>
+        <activity android:name=".InfoServico" />
+        <activity android:name=".CadastroServico.CadastroServico" />
         <activity android:name=".CadastroUsuario.Cadastro5" />
         <activity android:name=".CadastroUsuario.Cadastro4" />
         <activity android:name=".CadastroUsuario.Cadastro3" />

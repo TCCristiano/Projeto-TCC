@@ -1,6 +1,7 @@
 package com.example.projetotcc;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,12 +11,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.example.projetotcc.Constants;
-import com.example.projetotcc.CadastroProduto.CadastroProduto;
+import com.example.projetotcc.CadastroServico.CadastroServico;
 import com.example.projetotcc.CadastroUsuario.Cadastro5;
-import com.example.projetotcc.ui.ListaProdutos;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,12 +26,16 @@ public class Controller extends AppCompatActivity {
    public static int result;
    JSONObject jsonObject;
 
-   public void CadastrarUser(final Usuario usuario) {
+
+
+   //CADASTROS
+   public void CadastrarUser(final VolleyCallbackUsuario callback, final Usuario usuario) {
       requestQueue = Cadastro5.requestQueue;
-      StringRequest stringRequest = new StringRequest(Constants.insertUrlUsuario, new Response.Listener<String>() {
+      StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.CadastrarUsuarioUrl, new Response.Listener<String>() {
          @Override
          public void onResponse(String response) {
-            System.out.println(response);
+            Log.i("Script", "SUCCESS: "+response);
+            callback.onSuccess(response, usuario);
          }
       }, new ErrorListener() {
          public void onErrorResponse(VolleyError error) {
@@ -54,66 +56,14 @@ public class Controller extends AppCompatActivity {
       };
       requestQueue.add(stringRequest);
    }
-   public Produto ListarProdutos(final int id) {
-      final String cod = String.valueOf(id);
-      requestQueue = ListaProdutos.requestQueue;
-      final Produto produto = new Produto();
-      StringRequest postRequest = new StringRequest(Request.Method.POST, Constants.Urlprodutos,
-              new Response.Listener<String>() {
+   public void CadastrarProduto(final VolleyCallback callback, final String nome, final String preco, final String descricao, final String tipo, final Usuario user) {
+      requestQueue = CadastroServico.requestQueue;
+      final String cod = String.valueOf(user.getCod());
+      StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.CadastrarServicoUrl, new Response.Listener<String>() {
          @Override
          public void onResponse(String response) {
-            System.out.println(response);
-            try {
-               JSONObject jsonObject = new JSONObject(response);
-               produto.setNome(jsonObject.getString("nome_produto"));
-               produto.setDescricao(jsonObject.getString("descricao_produto"));
-               produto.setPreco(jsonObject.getString("preco_produto"));
-               produto.setID(jsonObject.getInt("cod_produto"));
-               Log.v("LogLogin", produto.getNome());
-            } catch (JSONException e) {
-               e.printStackTrace();
-            }
-         }
-      }, new ErrorListener() {
-         public void onErrorResponse(VolleyError error) {
-            System.out.println(error);
-         }
-      }) {
-         @Override
-         protected Map<String, String> getParams()
-         {
-            Map<String, String>  params = new HashMap<String, String>();
-            params.put("cod", cod);
-
-            return params;
-         }
-      };
-      requestQueue.add(postRequest);
-      return produto;
-   }
-   public int UltimoProduto() {
-      requestQueue = PaginaUsuario.requestQueue;
-      StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.produtos, new Response.Listener<String>() {
-         @Override
-         public void onResponse(String response) {
-            System.out.println(response);
-            Controller.result = Integer.parseInt(response);
-         }
-      }, new ErrorListener() {
-         public void onErrorResponse(VolleyError error) {
-            System.out.println(error);
-         }
-      });
-      requestQueue.add(stringRequest);
-      return result;
-   }
-
-   public void CadastrarP(final String nome, final String preco, final String descricao) {
-      requestQueue = CadastroProduto.requestQueue;
-      StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.insertUrlProduto, new Response.Listener<String>() {
-         @Override
-         public void onResponse(String response) {
-            System.out.println(response);
+            Log.i("Script", "SUCCESS Servico: "+response + cod);
+            callback.onSuccess(response);
          }
       }, new ErrorListener() {
          public void onErrorResponse(VolleyError error) {
@@ -125,52 +75,194 @@ public class Controller extends AppCompatActivity {
             hashMap.put("nome", nome);
             hashMap.put("preco", preco);
             hashMap.put("descricao", descricao);
+            hashMap.put("tipo", tipo);
+            hashMap.put("cod", cod);
             return hashMap;
          }
       };
       requestQueue.add(stringRequest);
    }
-   public Usuario Login(final String email, final String senha, final Usuario usuario) {
+
+
+
+
+   //LOGIN
+   public void Login(final VolleyCallbackUsuario callback, final String email, final String senha) {
       requestQueue = MainActivity.requestQueue;
-      StringRequest postRequest = new StringRequest(Request.Method.POST, Constants.login,
-              new Response.Listener<String>()
-              {
+      final Usuario usuario = new Usuario();
+      final StringRequest request = new StringRequest(
+              Request.Method.POST,
+              Constants.LoginUsuarioUrl,
+
+              new Response.Listener<String>(){
                  @Override
                  public void onResponse(String response) {
-                    Log.d("Response", response);
+
+                    Log.i("Script", "SUCCESS: "+ response);
                     try {
+                       JSONObject jsonObject = new JSONObject(response);
+                       usuario.setNome(jsonObject.getString("nome_usuario"));
+                       usuario.setEmail(jsonObject.getString("email_usuario"));
+                       usuario.setCod(jsonObject.getInt("cod_usuario"));
+                       Log.i("Cod", "Int: "+ usuario.getCod());
+                    } catch (JSONException e) {
+                       e.printStackTrace();
+                    }
+                    callback.onSuccess(response, usuario);
+                 }
+              },
+              new Response.ErrorListener() {
+                 @Override
+                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(MainActivity.context, "Error: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                 }
+              }){
+         protected Map getParams() throws AuthFailureError {
+            HashMap hashMap = new HashMap();
+            hashMap.put("email", email);
+            hashMap.put("senha", senha);
+            return hashMap;
+         }
 
-                       MainActivity.jsonObject = new JSONObject(response);
-                       usuario.setEmail(MainActivity.jsonObject.getString("email_usuario"));
-                       usuario.setNome(MainActivity.jsonObject.getString("nome_usuario"));
-                       Log.v("LogLogin", usuario.getEmail());
+      };
 
-                    } catch (Exception error) {
-                       Log.v("LogLogin", String.valueOf(error));
+      request.setTag("tag");
+      requestQueue.add(request);
+
+   }
+
+
+
+
+   //LISTAR PRODUTOS
+   public void idUltimo(final VolleyCallback callback) {
+      requestQueue = PaginaUsuario.requestQueue;
+      final StringRequest request = new StringRequest(
+              Request.Method.POST,
+              Constants.SelecionarUltimoServicoUrl,
+
+              new Response.Listener<String>(){
+                 @Override
+                 public void onResponse(String response) {
+
+                    Log.i("Script", "SUCCESS: "+response);
+
+                    //passa o valor para o método callback
+                    callback.onSuccess(response);
+
+                 }
+              },
+              new Response.ErrorListener() {
+                 @Override
+                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(MainActivity.context, "Error: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                 }
+              });
+
+      request.setTag("tag");
+      requestQueue.add(request);
+   }
+   public void Listar(final VolleyCallbackProduto callback, final String id, final String tipo) {
+      requestQueue = PaginaUsuario.requestQueue;
+      final Servico servico = new Servico();
+      final StringRequest request = new StringRequest(
+              Request.Method.POST,
+              Constants.SelecionarServicoUrl,
+              new Response.Listener<String>(){
+                 @Override
+                 public void onResponse(String response) {
+
+                    Log.i("Script", "SUCCESS: "+response);
+                    try {
+                       JSONObject jsonObject = new JSONObject(response);
+                       servico.setNome(jsonObject.getString("nome_servico"));
+                       servico.setTipo(jsonObject.getString("tipo_servico"));
+                       servico.setPreco(jsonObject.getString("preco_servico"));
+                       servico.setDescricao(jsonObject.getString("descricao_servico"));
+                       servico.setID(jsonObject.getInt("cod_servico"));
+                       servico.setIDUser(jsonObject.getInt("cod_usuario"));
+                       callback.onSuccess(response, servico);
+                       Log.v("LogLogin", servico.getNome());
+                    } catch (JSONException e) {
+                       e.printStackTrace();
                     }
                  }
               },
-              new Response.ErrorListener()
-              {
+              new Response.ErrorListener() {
                  @Override
                  public void onErrorResponse(VolleyError error) {
-                    // error
-                    Log.d("Error.Response", error.toString());
+                    Toast.makeText(MainActivity.context, "Error: "+error.getMessage(), Toast.LENGTH_LONG).show();
                  }
-              }
-      ) {
-         @Override
-         protected Map<String, String> getParams()
-         {
-            Map<String, String>  params = new HashMap<String, String>();
-            params.put("email", email);
-            params.put("senha", senha);
-
-            return params;
+              }){
+         protected Map getParams() throws AuthFailureError {
+            HashMap hashMap = new HashMap();
+            hashMap.put("cod", id);
+            hashMap.put("tipo", tipo);
+            return hashMap;
          }
+
       };
-      requestQueue.add(postRequest);
-      return usuario;
+      request.setTag("tag");
+      requestQueue.add(request);
    }
+
+
+   public void findServicoById(final VolleyCallbackProduto callback, final String id) {
+      requestQueue = PaginaUsuario.requestQueue;
+      final Servico servico = new Servico();
+      final StringRequest request = new StringRequest(
+              Request.Method.POST,
+              Constants.SelecionarUsuarioServicoUrl,
+              new Response.Listener<String>(){
+                 @Override
+                 public void onResponse(String response) {
+
+                    Log.i("Aqui", "Meu Serviço: "+response);
+                    try {
+                       JSONObject jsonObject = new JSONObject(response);
+                       servico.setNome(jsonObject.getString("nome_servico"));
+                       servico.setDescricao(jsonObject.getString("descricao_servico"));
+                       servico.setPreco(jsonObject.getString("preco_servico"));
+                       servico.setTipo(jsonObject.getString("tipo_servico"));
+                       servico.setID(jsonObject.getInt("cod_servico"));
+                       callback.onSuccess(response, servico);
+                       Log.v("LogLogin", servico.getNome());
+                    } catch (JSONException e) {
+                       e.printStackTrace();
+                    }
+                 }
+              },
+              new Response.ErrorListener() {
+                 @Override
+                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(MainActivity.context, "Error: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                 }
+              }){
+         protected Map getParams() throws AuthFailureError {
+            HashMap hashMap = new HashMap();
+            hashMap.put("cod", id);
+            return hashMap;
+         }
+
+      };
+      request.setTag("tag");
+      requestQueue.add(request);
+
+   }
+
+
+   //CALLBACKS
+   public interface VolleyCallback {
+      void onSuccess(String response);
+   }
+
+   public interface VolleyCallbackProduto {
+      void onSuccess(String response, Servico servico);
+   }
+
+   public interface VolleyCallbackUsuario {
+      void onSuccess(String response, Usuario usuario);
+   }
+
 
 }

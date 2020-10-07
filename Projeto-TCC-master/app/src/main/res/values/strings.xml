@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Projeto_TCC</string>
+    <string name="app_name">Home Services</string>
     <string name="btn_Cadastrado">Já Tenho Conta</string>
     <string name="btn_Cadastrar">Sou Novo Aqui</string>
     <string name="btn_Next">PRÓXIMO</string>
+    <string name="txt_headerInicio">Olá</string>
     <string name="txt_email">EMAIL</string>
     <string name="txt_senha">SENHA</string>
     <string name="txt_consenha">CONFIRMAR SENHA</string>
@@ -57,11 +58,11 @@
     <string name="title_activity_pagina_usuario">PaginaUsuario</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_minhaLoja">Minha Loja</string>
+    <string name="menu_minhaLoja">Meu Serviço</string>
     <string name="menu_pedidos">Pedidos</string>
     <string name="menu_categoria">Categoria</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_sair">Sair</string>
-    <string name="adicionar_lista_de_favoritos">Adicionar à lista de favoritos</string>
+    <string name="menu_listar">Lista</string>
 </resources>

@@ -8,5 +8,8 @@
     <color name="colorTextSecondary">#757575</color>
     <color name="colorRatingActive">#3700B3</color>
     <color name="colorRatingInactive">#6200EE</color>
-    <color name="colorBackground">#EEEEEE</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="grey">#2d2d2d</color>
+    <color name="headerBackground">#8a2be2</color>
+
 </resources>

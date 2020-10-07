@@ -3,6 +3,8 @@ package com.example.projetotcc;
 import android.net.Uri;
 
 public class Usuario {
+   private boolean erro;
+   private int cod;
    private String cpf;
    private String email;
    private int idade;
@@ -98,5 +100,21 @@ public class Usuario {
 
    public void setUsername(String var1) {
       this.username = var1;
+   }
+
+   public boolean isErro() {
+      return erro;
+   }
+
+   public void setErro(boolean erro) {
+      this.erro = erro;
+   }
+
+   public int getCod() {
+      return cod;
+   }
+
+   public void setCod(int cod) {
+      this.cod = cod;
    }
 }
