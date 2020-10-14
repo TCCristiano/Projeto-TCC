@@ -19,6 +19,12 @@
     $linha = $resultado->fetch_assoc();
     $r = mysqli_fetch_array($resultado);
 
+
+    $Nuser = $linha['cod_usuario'];
+    $linha['img'] = file_get_contents("./img/Servico/$Nuser.jpg");
+
+    $linha['img'] = base64_encode($linha['img']);
+
     $sql -> close();
     $conn -> close();
 

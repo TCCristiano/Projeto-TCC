@@ -19,6 +19,10 @@
     
     $sql -> close();
     $conn -> close();
+    $Nuser = $linha['userName_usuario'];
+    $linha['img'] = file_get_contents("./img/UserPerfil/$Nuser.jpg");
+
+    $linha['img'] = base64_encode($linha['img']);
 
     if(empty($linha))
     {
