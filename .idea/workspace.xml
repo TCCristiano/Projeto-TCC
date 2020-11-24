@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origen" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8cd3696a-c732-4785-95dc-aac14febefd5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ChatApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/RStar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/chatUsuario/ChatUsuarioFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/chatUsuario/ChatUsuarioViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarPortifolio/EditarPortifolioFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarPortifolio/EditarPortifoliolViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarServico/EditarServicoFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarServico/EditarServicoViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/infoServico/InfoServicoFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/infoServico/InfoServicoViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/portifolio/PortifolioFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/portifolio/PortifoliolViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Favoritos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_arquivo_favorito_50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_casa_50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_categorizar_26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_discurso_24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sair_64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_servico_64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editar_servico.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_rating.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ChatUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/InfoServico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/PaginaUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/PaginaUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/cadastroServico/CadastroServico1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/cadastroServico/CadastroServico1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/cadastroUsuario/Cadastro3.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/cadastroUsuario/Cadastro3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/Mensagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/Mensagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/MensagemPaginaUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/SelecionarUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/SelecionarUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarCadastroServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarCadastroServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarCadastroUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarCadastroUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/controllers/ValidarLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/MensagemModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/MensagemModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/SelecionarServicoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/SelecionarServicoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/SelecionarUsuarioModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/SelecionarUsuarioModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/ValidarLoginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/models/ValidarLoginModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarPerfil/EditarPerfilFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarPerfil/EditarPerfilFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/favoritos/FavoritosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/favoritos/FavoritosFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/listaFragment/ListaCategoriasFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/listaFragment/ListaCategoriasFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/minhaLoja/MinhaLojaFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/minhaLoja/MinhaLojaFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/pedidos/PedidosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/pedidos/PedidosFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/perfil/PerfilFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/perfil/PerfilFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/database/DadosOpenHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/database/DadosOpenHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/database/DadosOpenHelperDestinatario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/database/DadosOpenHelperDestinatario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/database/ScriptDLL.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/database/ScriptDLL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Servico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dominio/entidade/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dominio/repositorio/ManterLogadoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dominio/repositorio/ManterLogadoRepositorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cadastro_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cadastro_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cadastro_servico.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cadastro_servico.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_usuario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat_usuario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_info_servico.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_servico.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categorias.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categorias.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editar_perfil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editar_perfil.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favoritos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_favoritos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_meu_servico.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_meu_servico.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_meu_servico_vazio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_meu_servico_vazio.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pedidos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pedidos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_perfil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_perfil.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_perfil_prestador.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_perfil_prestador.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_portifolio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_portifolio.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_chat_message_right.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_chat_message_right.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_pedidos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_pedidos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_servico.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_servico.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kZLpEC6TT05ld6Qu1g6saTdP24" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/example/projetotcc/ui/editarServico" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.projetotcc" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Paulo Cavalcante\Documents\PAM\HomeService\ProjetoTCCAgain\app\src\main\java\com\example\projetotcc\ui\editarServico" />
+      <recent name="C:\Users\Paulo Cavalcante\Documents\PAM\HomeService\ProjetoTCCAgain\app\src\main\java\com\example\projetotcc\ui" />
+      <recent name="C:\Users\Paulo Cavalcante\Documents\PAM\HomeService\ProjetoTCCAgain\app\src\main\res\drawable" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="ProjetoTCC.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8cd3696a-c732-4785-95dc-aac14febefd5" name="Default Changelist" comment="" />
+      <created>1605903360115</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605903360115</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1606090997896">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1606090997896" />
+    <state x="387" y="101" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1606096120788">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="387" y="101" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606096120788" />
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog" timestamp="1606162494464">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1606162494464" />
+    <state x="527" y="154" key="AndroidCreateXmlResourceDialog" timestamp="1606094016741">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="527" y="154" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1606094016741" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1605914880295">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1605914880295" />
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1606167544039">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606167544039" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1606167544039">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606167544039" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1606167544039">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606167544039" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1606167544039">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606167544039" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1606164273639">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1606164273639" />
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606164299127">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1606164299127" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1606164581576">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1606164581576" />
+  </component>
+</project>
