@@ -17,6 +17,7 @@
         android:background="@drawable/bg_edittext_rounded"
         android:padding="8dp"
         android:text="TextView TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"
+        android:textColor="#8C8C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgMessage"
         app:layout_constraintTop_toTopOf="@+id/imgMessage" />

@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projetotcc.models.CallBacks;
 import com.example.projetotcc.PaginaUsuario;
+
+import dominio.entidade.CEP;
 import dominio.entidade.Servico;
 import dominio.entidade.Usuario;
 
 import com.example.projetotcc.R;
+import com.example.projetotcc.ui.chatUsuario.ChatUsuarioFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,19 +30,24 @@ public class MinhaLojaFragment extends Fragment {
 
     private MinhaLojaViewModel mViewModel;
     public static RecyclerView rv;
-    Servico servico;
-    Usuario user;
-    CallBacks callBacks;
-    TextView email, tipo, descricao, userName, estado, cidade, tell;
-    ImageView imageView;
+    private Servico servico;
+    private CEP cep;
+    private Usuario user;
+    private TextView email, tipo, descricao, userName, estado, cidade, tell;
+    private ImageView imageView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        callBacks = new CallBacks();
         servico = PaginaUsuario.servicop;
+        cep = PaginaUsuario.cep;
         user = new Usuario();
+        try {
+            ChatUsuarioFragment.registration2.remove();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         View view;
 try {
     if (servico.getNome().isEmpty()) {
@@ -68,8 +75,8 @@ try {
                         user = documentSnapshot.toObject(Usuario.class);
                         userName.setText(user.getNome());
                         tipo.setText(servico.getTipo());
-                        estado.setText(user.getNome());
-                        cidade.setText(servico.getTipo());
+                        estado.setText(cep.getEstado());
+                        cidade.setText(cep.getCidade());
                         tell.setText(String.valueOf(user.getTel()));
                         email.setText(user.getEmail());
                         descricao.setText(servico.getDescricao());

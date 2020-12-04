@@ -13,9 +13,10 @@
         android:layout_marginLeft="120dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/bg_edittext_rounded"
+        android:background="@drawable/bg_edittext_rounded2"
         android:padding="8dp"
         android:text="TextView TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"
+        android:textColor="#8C8C8C"
         app:layout_constraintEnd_toStartOf="@+id/imgMessage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgMessage" />

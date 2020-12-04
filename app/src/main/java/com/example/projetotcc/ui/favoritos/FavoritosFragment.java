@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,8 +25,9 @@ import android.widget.TextView;
 
 import com.example.projetotcc.PaginaUsuario;
 import com.example.projetotcc.R;
-import com.example.projetotcc.controllers.SelecionarServico;
-import com.example.projetotcc.models.CallBacks;
+import com.example.projetotcc.ui.chatUsuario.ChatUsuarioFragment;
+import com.example.projetotcc.ui.editarPerfil.EditarPerfilFragment;
+import com.example.projetotcc.ui.home.HomeFragment;
 import com.example.projetotcc.ui.infoServico.InfoServicoFragment;
 import com.example.projetotcc.ui.listaFragment.ListaCategoriasFragment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -67,6 +70,11 @@ public class FavoritosFragment extends Fragment {
         View view;
         view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         rv = view.findViewById(R.id.favoritosRecycler);
+        try {
+            ChatUsuarioFragment.registration2.remove();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         return view;
     }
 
@@ -74,6 +82,7 @@ public class FavoritosFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(FavoritosViewModel.class);
+
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(PaginaUsuario.context));
 
@@ -84,6 +93,7 @@ public class FavoritosFragment extends Fragment {
                 FavoritosFragment.ServicoItem servicoItem = (FavoritosFragment.ServicoItem) item;
                 servico = new Servico();
                 servico = servicoItem.servico;
+                ListaCategoriasFragment.servico = servico;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -100,40 +110,56 @@ public class FavoritosFragment extends Fragment {
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.e("Teste", e.getMessage(), e);
-                            return;
-                        }
-                        List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                        adapter.clear();
-                        for (DocumentSnapshot doc: docs) {
-                            final Favoritos favoritos = doc.toObject(Favoritos.class);
-                            String uid = FirebaseAuth.getInstance().getUid();
-                            FirebaseFirestore.getInstance().collection("/servico")
-                                    .document(favoritos.getIdServico())
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(final DocumentSnapshot documentSnapshotServico) {
-                                            Servico servicoi = new Servico();
-                                            servicoi = documentSnapshotServico.toObject(Servico.class);
-                                            final Servico finalServicoi = servicoi;
-                                            FirebaseFirestore.getInstance().collection("/users")
-                                                    .document(servicoi.getIDUser())
-                                                    .get()
-                                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                        @Override
-                                                        public void onSuccess(DocumentSnapshot documentSnapshotUser) {
-                                                            Usuario usuario = documentSnapshotUser.toObject(Usuario.class);
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            if (e != null) {
+                                Log.e("Teste", e.getMessage(), e);
+                                return;
+                            }
+                            List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                            adapter.clear();
+                            for (DocumentSnapshot doc : docs) {
+                                final Favoritos favoritos = doc.toObject(Favoritos.class);
+                                String uid = FirebaseAuth.getInstance().getUid();
+                                FirebaseFirestore.getInstance().collection("/servico")
+                                        .document(favoritos.getIdServico())
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(final DocumentSnapshot documentSnapshotServico) {
+                                                Servico servicoi = new Servico();
+                                                servicoi = documentSnapshotServico.toObject(Servico.class);
+                                                final Servico finalServicoi = servicoi;
+                                                FirebaseFirestore.getInstance().collection("/users")
+                                                        .document(servicoi.getIDUser())
+                                                        .get()
+                                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(DocumentSnapshot documentSnapshotUser) {
+                                                                Usuario usuario = documentSnapshotUser.toObject(Usuario.class);
 
-                                                            adapter.add(new FavoritosFragment.ServicoItem(finalServicoi, usuario, favoritos));
-                                                            adapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                        }
-                                    });
+                                                                adapter.add(new FavoritosFragment.ServicoItem(finalServicoi, usuario, favoritos));
+                                                                adapter.notifyDataSetChanged();
+                                                            }
+                                                        });
+                                            }
+                                        });
+                            }
+                        }
+                        else
+                        {
+                            new AlertDialog.Builder(PaginaUsuario.getContext)
+                                    .setTitle("Favoritos Vazio")
+                                    .setMessage("Nenhum serviço marcado como favorito ")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment, new HomeFragment()).commit();
+
+                                        } }).setIcon(R.drawable.ic_arquivo_favorito_50) .show();
                         }
                     }
+
                 });
     }
 

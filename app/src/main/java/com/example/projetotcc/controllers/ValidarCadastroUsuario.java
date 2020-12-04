@@ -1,37 +1,48 @@
 package com.example.projetotcc.controllers;
 
 import android.content.Intent;
+import android.media.MediaDrm;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.projetotcc.cadastroUsuario.Cadastro1;
 import com.example.projetotcc.cadastroUsuario.Cadastro2;
 import com.example.projetotcc.cadastroUsuario.Cadastro3;
+import com.example.projetotcc.cadastroUsuario.Cadastro4;
 import com.example.projetotcc.cadastroUsuario.Cadastro5;
-import database.DadosOpenHelper;
-import dominio.repositorio.ManterLogadoRepositorio;
+import dominio.entidade.CEP;
+
 import com.example.projetotcc.PaginaUsuario;
+
+import dominio.entidade.Servico;
 import dominio.entidade.Usuario;
-import com.example.projetotcc.models.ValidarCadastroUsuarioModel;
-import com.example.projetotcc.models.CallBacks;
+
+import com.example.projetotcc.cadastroUsuario.Cadastro6;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.UUID;
 
-public class ValidarCadastroUsuario extends Cadastro5 {
+public class ValidarCadastroUsuario extends Cadastro6 {
     String CPF;
     public boolean ValidarCadastro1(String nome, String sobrenome, String cpf) {
         usuario = new Usuario();
@@ -76,12 +87,16 @@ public class ValidarCadastroUsuario extends Cadastro5 {
                         dig11 = '0';
                     else dig11 = (char) (r + 48);
 
-                    if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10)))
-                         cpf = imprimeCPF(cpf);
-                         usuario.setNome(nome + " " + sobrenome);
-                         usuario.setCpf(cpf);
-                            return true;
+                        if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
+                            cpf = imprimeCPF(cpf);
+                            FindCPF(cpf);
+                                usuario.setNome(nome + " " + sobrenome);
+                                usuario.setCpf(cpf);
+                                return true;
 
+                        } else {
+                            Toast.makeText(Cadastro1.context, " CPF invalido", Toast.LENGTH_SHORT).show();
+                        }
                 } catch (InputMismatchException erro) {
                     Toast.makeText(Cadastro1.context, " CPF invalido", Toast.LENGTH_SHORT).show();
                 }
@@ -116,7 +131,7 @@ public class ValidarCadastroUsuario extends Cadastro5 {
         }
     }
 
-    public boolean ValidarCadastro3(String email, String user, String tell) {
+    public void ValidarCadastro3(String email, String user, String tell) {
         if (!email.isEmpty()) {
             if (!user.isEmpty()) {
                 if (tell != null || tell.isEmpty()) {
@@ -124,111 +139,107 @@ public class ValidarCadastroUsuario extends Cadastro5 {
                     usuario.setEmail(email);
                     usuario.setUsername(user);
                     usuario.setTel(tell);
-                    return true;
+                    FindEmail(email, tell);
                 } else {
                     Toast.makeText(Cadastro3.context, " Telefone está vazio", Toast.LENGTH_SHORT).show();
-                    return false;
                 }
             } else {
                 Toast.makeText(Cadastro3.context, " email está vazio", Toast.LENGTH_SHORT).show();
-                return false;
             }
         } else {
             Toast.makeText(Cadastro3.context, " Email está vazio", Toast.LENGTH_SHORT).show();
-            return false;
         }
     }
     public boolean ValidarCadastro4(String senha, String senhaC) {
         if (!senha.isEmpty()) {
             if (!senhaC.isEmpty()) {
-                if (!(senha.length() <= 6))
+                if (!(senha.length() < 6))
                 {
 
                     if (senha.equals(senhaC)) {
                         usuario.setSenha(senha);
                         return true;
                     } else {
-                        Toast.makeText(Cadastro3.context, "As senhas se diferem!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Cadastro4.context, "As senhas se diferem!", Toast.LENGTH_SHORT).show();
                         return false;
                     }
-            }
+                }
                 else {
-                    Toast.makeText(Cadastro3.context, "A senha tem que ter no minimo 6 caracteries", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cadastro4.context, "A senha tem que ter no minimo 6 caracteries", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             } else {
-                Toast.makeText(Cadastro3.context, "Confirmação de senha está vazio", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cadastro4.context, "Confirmação de senha está vazio", Toast.LENGTH_SHORT).show();
                 return false;
             }
         } else {
-            Toast.makeText(Cadastro3.context, "Senha está vazio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Cadastro4.context, "Senha está vazio", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
-    public void ValidarCadastro5(String imagem) {
-        try {
-            cadastroUsuarioModel = new ValidarCadastroUsuarioModel();
-            if (imagem != null) {
-                cadastroUsuarioModel.CadastrarUser(new CallBacks.VolleyCallbackUsuario() {
-                    @Override
-                    public void onSuccess(String response, Usuario user) {
-                        if (user == null) {
-                        } else if (user.getEmail() == usuario.getEmail()) {
 
-                            manterLogadoRepositorio.inserir(user);
-                            FirebaseAuth.getInstance().createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
-                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if(task.isSuccessful())
-                                                Log.i("teste", task.getResult().getUser().getUid());
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.i("teste", e.getMessage());
-                                }
-                            });
-                            it = new Intent(context, PaginaUsuario.class);
-
-                            it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            context.startActivity(it);
-                        }
-                    }
-                }, usuario, imagem);
-            } else {
-                Toast.makeText(Cadastro2.context, "Por favor escolha uma foto para seu perfil", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
     public void ValidarCadastro5FireBase(final Uri imagem) {
         try {
-            cadastroUsuarioModel = new ValidarCadastroUsuarioModel();
             if (imagem != null) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful())
-                                    Log.i("teste", task.getResult().getUser().getUid());
-                                saveUserInFirebase(imagem);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.i("teste", e.getMessage());
-                    }
-                });
 
+                it = new Intent(Cadastro5.context, Cadastro6.class);
+                Cadastro5.context.startActivity(it);
             } else {
                 Toast.makeText(Cadastro2.context, "Por favor escolha uma foto para seu perfil", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) { e.printStackTrace(); }
     }
+    public void ValidarCadastro6FireBase(final CEP cep, final Uri imagem) {
+        try {
+            if (!cep.getCEP().isEmpty()) {
+                if (!cep.getBairro().isEmpty()) {
+                    if (!cep.getComplemento().isEmpty()) {
+                        if (!cep.getEstado().isEmpty()) {
+                            if (!cep.getRua().isEmpty()) {
+                                if (!cep.getCidade().isEmpty()) {
+                                    if (!cep.getNumero().isEmpty()) {
+                                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
+                                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                        if (task.isSuccessful())
+                                                            Log.i("teste", task.getResult().getUser().getUid());
+                                                        saveUserInFirebase(imagem, cep);
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.i("teste", e.getMessage());
+                                            }
+                                        });
+                                    } else {
+                                        Toast.makeText(Cadastro2.context, "número está vazio", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(Cadastro2.context, "cidade está vazio", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(Cadastro2.context, "rua está vazio", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(Cadastro2.context, "UF está vazio", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(Cadastro2.context, "complemento está vazio", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Cadastro2.context, "bairro está vazio", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(Cadastro2.context, "CEP está vazio", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-    private void saveUserInFirebase(Uri imagem) {
-        String filename = UUID.randomUUID().toString();
+    private void saveUserInFirebase(Uri imagem, final CEP cep) {
+        String filename = FirebaseAuth.getInstance().getUid();
         final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/users/" + filename);
         ref.putFile(imagem)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -238,28 +249,43 @@ public class ValidarCadastroUsuario extends Cadastro5 {
                             @Override
                             public void onSuccess(Uri uri) {
                                 usuario.setImageUrl(String.valueOf(uri));
-        usuario.setId(FirebaseAuth.getInstance().getUid());
-        FirebaseFirestore.getInstance().collection("users")
-                .document(usuario.getId())
-                .set(usuario)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        loadingDialog.DismissDialog();
-                        it = new Intent(context, PaginaUsuario.class);
+                                usuario.setId(FirebaseAuth.getInstance().getUid());
+                                FirebaseFirestore.getInstance().collection("users")
+                                        .document(usuario.getId())
+                                        .set(usuario)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                FirebaseFirestore.getInstance().collection("endereco")
+                                                        .document(usuario.getId())
+                                                        .set(cep)
+                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void aVoid) {
+                                                                loadingDialog.DismissDialog();
+                                                                it = new Intent(context, PaginaUsuario.class);
 
-                        it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        context.startActivity(it);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        loadingDialog.DismissDialog();
-                        Log.i("Teste", e.getMessage());
-                    }
-                });
+                                                                context.startActivity(it);
+                                                            }
+                                                        })
+                                                        .addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                loadingDialog.DismissDialog();
+                                                                Log.i("Teste", e.getMessage());
+                                                            }
+                                                        });
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                loadingDialog.DismissDialog();
+                                                Log.i("Teste", e.getMessage());
+                                            }
+                                        });
                             }
                         });
                     }
@@ -272,14 +298,81 @@ public class ValidarCadastroUsuario extends Cadastro5 {
                     }
                 });
     }
+    public void FindCPF(String cpf) {
+        final boolean[] cpfBoolean = new boolean[1];
+        FirebaseFirestore.getInstance().collection("users")
+                .whereEqualTo("cpf", cpf)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.isEmpty())
+                        {
+                            Log.e("CPF", "Vazio");
+                            it = new Intent(Cadastro1.context, Cadastro2.class);
+                            Cadastro1.context.startActivity(it);
+                        }else
+                        {
+                            Toast.makeText(Cadastro1.context, " CPF já cadastrado", Toast.LENGTH_SHORT).show();
+                            Log.e("CPF", "tem");
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("CPF: ", e.getMessage());
 
-    private void criarConexaoInterna() {
-        try {
-            dadosOpenHelper = new DadosOpenHelper(Cadastro5.context);
-            conexao = dadosOpenHelper.getWritableDatabase();
-            manterLogadoRepositorio = new ManterLogadoRepositorio(conexao); } catch (Exception e) {
-            e.printStackTrace();
-        }
+            }
+        });
+    }
+
+    public void FindEmail(String email, final String tell) {
+        FirebaseFirestore.getInstance().collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.isEmpty())
+                        {
+                            FindTell(tell);
+                        }else
+                        {
+                            Toast.makeText(Cadastro3.context, " Email já cadastrado", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("ERRO", e.getMessage());
+
+            }
+        });
+    }
+    public void FindTell(String tell) {
+        final boolean[] cpfBoolean = new boolean[1];
+        FirebaseFirestore.getInstance().collection("users")
+                .whereEqualTo("tel", tell)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.isEmpty())
+                        {
+                            it = new Intent(Cadastro3.context, Cadastro4.class);
+                            Cadastro3.context.startActivity(it);
+                        }else
+                        {
+                            Toast.makeText(Cadastro3.context, " Telefone já cadastrado", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("ERRO", e.getMessage());
+
+            }
+        });
     }
 }
 

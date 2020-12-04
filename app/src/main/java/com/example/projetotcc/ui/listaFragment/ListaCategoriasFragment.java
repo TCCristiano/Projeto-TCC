@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,16 +20,19 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.projetotcc.controllers.SelecionarServico;
-import com.example.projetotcc.models.CallBacks;
+import com.example.projetotcc.MainActivity;
 import com.example.projetotcc.PaginaUsuario;
 import com.example.projetotcc.R;
 
+import dominio.entidade.CEP;
 import dominio.entidade.Favoritos;
 import dominio.entidade.Servico;
 import dominio.entidade.Usuario;
 
+import com.example.projetotcc.ui.categorias.CategoriasFragment;
+import com.example.projetotcc.ui.filtrar.FiltrarFragment;
 import com.example.projetotcc.ui.infoServico.InfoServicoFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,8 +55,7 @@ public class ListaCategoriasFragment extends Fragment {
     public static GroupAdapter adapter;
     public static RecyclerView rv;
     public static Servico servico;
-    private static CallBacks callBacks;
-    private static SelecionarServico selecionarServico;
+    public  static String UF;
 
     private MainViewModel mViewModel;
 
@@ -62,14 +63,28 @@ public class ListaCategoriasFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        callBacks = new CallBacks();
-        selecionarServico = new SelecionarServico();
         adapter = new GroupAdapter();
 
         View view;
         view = inflater.inflate(R.layout.fragment_lista, container, false);
         rv = view.findViewById(R.id.recyclerListaPrestador);
-
+        try {
+            PaginaUsuario.toolbar.setTitle(PaginaUsuario.tipo);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        UF = FiltrarFragment.UF;
+       try {
+           if(UF != "") {
+               FindServicobyUF(UF);
+           }else
+           {
+               FindServico();
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+           FindServico();
+       }
 
         return view;
     }
@@ -96,12 +111,12 @@ public class ListaCategoriasFragment extends Fragment {
                 fragmentTransaction.replace(R.id.nav_host_fragment, new InfoServicoFragment()).commit();
             }
         });
-        FindServico();
+
     }
 
     private void FindServico() {
         FirebaseFirestore.getInstance().collection("servico")
-                .whereEqualTo("tipo", PaginaUsuario.tipo)
+                .whereEqualTo("tipo", CategoriasFragment.tipo)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -143,9 +158,71 @@ public class ListaCategoriasFragment extends Fragment {
                 });
     }
 
+    private void FindServicobyUF(final String UF) {
 
+                            FirebaseFirestore.getInstance().collection("servico")
+                                    .whereEqualTo("tipo", CategoriasFragment.tipo)
+                                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                            if (e != null) {
+                                                Log.e("Teste", e.getMessage(), e);
+                                                return;
+                                            }
+
+                                            List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                                            adapter.clear();
+
+                                            for (final DocumentSnapshot doc : docs) {
+                                                final Servico servico = doc.toObject(Servico.class);
+                                                String uid = FirebaseAuth.getInstance().getUid();
+                                                if (servico.getIDUser().equals(uid))
+                                                    continue;
+                                                FirebaseFirestore.getInstance().collection("endereco")
+                                                        .document(servico.getIDUser())
+                                                        .get()
+                                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                    CEP cep = documentSnapshot.toObject(CEP.class);
+                                                                    try {
+                                                                        Log.e("Teste", cep.getEstado() +" "+ UF);
+                                                                    } catch (Exception exception) {
+                                                                        exception.printStackTrace();
+                                                                    }
+                                                                if(cep.getEstado().equals(UF)) {
+                                                                    FirebaseFirestore.getInstance().collection("/users")
+                                                                            .document(servico.getIDUser())
+                                                                            .get()
+                                                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                                @Override
+                                                                                public void onSuccess(final DocumentSnapshot documentSnapshotUser) {
+                                                                                    FirebaseFirestore.getInstance().collection("/favoritos")
+                                                                                            .document(FirebaseAuth.getInstance().getUid())
+                                                                                            .collection("servico")
+                                                                                            .document(servico.getIDUser())
+                                                                                            .get()
+                                                                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                                                @Override
+                                                                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                                    Usuario usuario = documentSnapshotUser.toObject(Usuario.class);
+                                                                                                    Favoritos favoritos = documentSnapshot.toObject(Favoritos.class);
+                                                                                                    adapter.add(new ServicoItem(servico, usuario, favoritos));
+                                                                                                    adapter.notifyDataSetChanged();
+                                                                                                }
+                                                                                            });
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                        });
+
+                                    }
     public static class ServicoItem extends Item<ViewHolder> {
-        private final Servico servico;
+        public final Servico servico;
         private final Usuario usuario;
         private final Favoritos favoritos;
 

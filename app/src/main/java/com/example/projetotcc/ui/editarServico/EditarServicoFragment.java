@@ -1,7 +1,9 @@
 package com.example.projetotcc.ui.editarServico;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.projetotcc.PaginaUsuario;
 import com.example.projetotcc.R;
+import com.example.projetotcc.RStar;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -39,6 +44,9 @@ public class EditarServicoFragment extends Fragment {
     private EditText descricao;
     private TextView qtdd;
     private RatingBar ratingBar;
+    private Usuario usuario;
+    private Servico servico;
+    private Intent it;
 
     public static EditarServicoFragment newInstance() {
         return new EditarServicoFragment();
@@ -49,9 +57,7 @@ public class EditarServicoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view;
-        Usuario usuario;
-        Servico servico;
-        servico = PaginaUsuario.servico;
+        servico = PaginaUsuario.servicop;
         usuario = PaginaUsuario.usuario;
         view = inflater.inflate(R.layout.fragment_editar_servico, container, false);
         imageView = view.findViewById(R.id.ImagemEditarServico);
@@ -59,10 +65,17 @@ public class EditarServicoFragment extends Fragment {
         descricao = view.findViewById(R.id.DescricaoEditarServico);
         qtdd = view.findViewById(R.id.QtddA);
         ratingBar = view.findViewById(R.id.estrelasA);
+        TextView btnChat = view.findViewById(R.id.btnEditarServico);
 
         Picasso.get().load(usuario.getImageUrl()).into(imageView);
         titulo.setText(servico.getNome());
         descricao.setText(servico.getDescricao());
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Editar();
+            }
+        });
         R();
 
         return view;
@@ -88,8 +101,8 @@ public class EditarServicoFragment extends Fragment {
                             int d = 0;
                             for (DocumentChange doc: documentChanges) {
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    PaginaUsuario.Rating rating = new PaginaUsuario.Rating();
-                                    rating =  doc.getDocument().toObject(PaginaUsuario.Rating.class);
+                                    RStar.Rating rating = new RStar.Rating();
+                                    rating =  doc.getDocument().toObject(RStar.Rating.class);
                                     d+= rating.getRating();
                                     i++;
                                 }
@@ -104,6 +117,30 @@ public class EditarServicoFragment extends Fragment {
                                 qtdd.setText("0");
                             }
                         }
+                    }
+                });
+    }
+    public void Editar()
+    {
+        servico.setNome(titulo.getText().toString());
+        servico.setDescricao(descricao.getText().toString());
+        FirebaseFirestore.getInstance().collection("servico")
+                .document(usuario.getId())
+                .set(servico)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        it = new Intent(PaginaUsuario.context, PaginaUsuario.class);
+
+                        it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        PaginaUsuario.context.startActivity(it);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("Teste", e.getMessage());
                     }
                 });
     }
