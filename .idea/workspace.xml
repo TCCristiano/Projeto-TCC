@@ -27,7 +27,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75598da3-7ba3-4e48-88af-865e7b10f66a" name="Default Changelist" comment="04/12 - quantidade mensagens" />
+    <list default="true" id="75598da3-7ba3-4e48-88af-865e7b10f66a" name="Default Changelist" comment="04/12 - correção de bugs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,8 +76,8 @@
       <recent name="com.example.projetotcc.ui.localizacao" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Paulo Cavalcante\Documents\ProjetoTcc\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\Paulo Cavalcante\Documents\ProjetoTcc\app\src\main\res\drawable" />
+      <recent name="C:\Users\Paulo Cavalcante\Documents\ProjetoTcc\app\src\main\res\drawable-v24" />
     </key>
   </component>
   <component name="RunManager">
@@ -248,7 +248,63 @@
       <option name="project" value="LOCAL" />
       <updated>1607112201274</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="04/12 - quantidade mensagens">
+      <created>1607119629820</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1607119629820</updated>
+    </task>
+    <task id="LOCAL-00015" summary="04/12 - quantidade mensagens">
+      <created>1607121052649</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1607121052649</updated>
+    </task>
+    <task id="LOCAL-00016" summary="04/12 - correção de bugs">
+      <created>1607127989611</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1607127989611</updated>
+    </task>
+    <task id="LOCAL-00017" summary="04/12 - correção de bugs">
+      <created>1607128936413</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1607128936413</updated>
+    </task>
+    <task id="LOCAL-00018" summary="04/12 - correção de bugs">
+      <created>1607130727527</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1607130727528</updated>
+    </task>
+    <task id="LOCAL-00019" summary="04/12 - correção de bugs">
+      <created>1607141665643</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1607141665643</updated>
+    </task>
+    <task id="LOCAL-00020" summary="04/12 - correção de bugs">
+      <created>1607145404248</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1607145404304</updated>
+    </task>
+    <task id="LOCAL-00021" summary="04/12 - correção de bugs">
+      <created>1607145689919</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1607145689919</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +327,8 @@
     <MESSAGE value="02/12 - correção de bugs" />
     <MESSAGE value="03/12 - correção de bugs" />
     <MESSAGE value="04/12 - quantidade mensagens" />
-    <option name="LAST_COMMIT_MESSAGE" value="04/12 - quantidade mensagens" />
+    <MESSAGE value="04/12 - correção de bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="04/12 - correção de bugs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1607103623314">
@@ -302,38 +359,38 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606763917788" />
-    <state width="1322" height="171" key="GridCell.Tab.0.bottom" timestamp="1607111394806">
+    <state width="1322" height="171" key="GridCell.Tab.0.bottom" timestamp="1607145970455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="171" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607111394806" />
-    <state width="1322" height="171" key="GridCell.Tab.0.center" timestamp="1607111394787">
+    <state width="1322" height="171" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607145970455" />
+    <state width="1322" height="171" key="GridCell.Tab.0.center" timestamp="1607145970455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="171" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607111394740" />
-    <state width="1322" height="171" key="GridCell.Tab.0.left" timestamp="1607111394740">
+    <state width="1322" height="171" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607145970455" />
+    <state width="1322" height="171" key="GridCell.Tab.0.left" timestamp="1607145970454">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="171" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607111394715" />
-    <state width="1322" height="171" key="GridCell.Tab.0.right" timestamp="1607111394788">
+    <state width="1322" height="171" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607145970454" />
+    <state width="1322" height="171" key="GridCell.Tab.0.right" timestamp="1607145970455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1322" height="171" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607111394788" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1607112238221">
+    <state width="1322" height="171" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607145970455" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1607145996353">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607112238221" />
-    <state x="499" y="142" key="chooseDestDirectoryDialog" timestamp="1607101331323">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607145996353" />
+    <state x="499" y="142" key="chooseDestDirectoryDialog" timestamp="1607140544152">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="499" y="142" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1607101331323" />
+    <state x="499" y="142" key="chooseDestDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1607140544152" />
     <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607104275152">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1607104275152" />
-    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607044128753">
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607127737800">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1607044128753" />
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1607127737800" />
     <state x="440" y="138" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1606886173523">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
